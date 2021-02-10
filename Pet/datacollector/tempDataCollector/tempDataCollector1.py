@@ -161,8 +161,8 @@ class tempDataCollector:
             for idx, i in enumerate(self.tempSensors):
                     try:
                         if i['web_active'] == 1:
-                            temperature  = random.randrange(20,40)
-                            # humidity, temperature = dht.read_retry(11, i['GPIO'])
+#                             temperature  = random.randrange(20,40)
+                            humidity, temperature = dht.read_retry(11, i['GPIO'])
                             self.myMqtt.myPublish(
                                 i['ID'],
                                 i['Name'],
@@ -186,8 +186,8 @@ class tempDataCollector:
                 for temp in inActiveTemp:
                         try:
                             if temp['web_active'] == 1:
-                                # humidity, temperature = dht.read_retry(11, temp['GPIO'])
-                                temperature  = random.randrange(20,40)
+                                humidity, temperature = dht.read_retry(11, temp['GPIO'])
+#                                 temperature  = random.randrange(20,40)
                                 if temperature is not None:
                                     self.active_inactive(1, temp)
                                     self.tempSensors[temp['ID']]["active"] = 1
