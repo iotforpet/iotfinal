@@ -194,7 +194,7 @@ class CentralController:
         try:
             dev = topic.split("/")[3]
             print(topic, msg)
-            if 'wlht' in topic and len(self.agg_sensor_readings[dev]) == (60 / self.tempFrequency):
+            if 'wlht' in topic and len(self.agg_sensor_readings[dev]) == (60 / self.waterFrequency):
                 self.proj_wL_readings[dev].append(float((json.loads(msg)['value'])))
                 self.proj_wL_date[dev].append(str((json.loads(msg)['time'])))
                 self.agg_sensor_readings[dev].pop(0)
@@ -202,7 +202,7 @@ class CentralController:
                 self.proj_temp_readings[dev].append(float((json.loads(msg)['value'])))
                 self.proj_temp_date[dev].append(str((json.loads(msg)['time'])))
                 self.agg_sensor_readings[dev].pop(0)
-            elif 'weight' in topic and len(self.agg_sensor_readings[dev])  == (60 / self.tempFrequency):
+            elif 'weight' in topic and len(self.agg_sensor_readings[dev])  == (60 / self.weightFrequency):
                 self.proj_w_readings[dev].append(float((json.loads(msg)['value'])))
                 self.proj_w_date[dev].append(str((json.loads(msg)['time'])))
                 self.agg_sensor_readings[dev].pop(0)
